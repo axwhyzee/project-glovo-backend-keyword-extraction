@@ -11,7 +11,6 @@ def extract_keywords(content, heading, top_n):
                      model.extract_keywords(heading, min_df=1, stop_words="english", vectorizer=vectorizer)]
     
     try:
-        print('trying')
         keywords = list(map(lambda x:x[0],
                             model.extract_keywords(
                                 content, 

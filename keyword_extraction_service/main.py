@@ -1,31 +1,24 @@
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI, Request
-import numpy as np
-import uvicorn
+from flask import Flask, request
+from flask_cors import CORS
 from keywords_extractor import extract_keywords
 
 
-app = FastAPI()
+app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=['*'],
-    allow_methods=['*'], 
-    allow_headers=['*'],
-)
-
-@app.get('/')
+@app.route('/')
 def read_root():
     return "Index"
 
-@app.get('/keywords/')
-async def get_keywords(request: Request):
-    r = await request.json()
-
+@app.route('/keywords')
+def get_keywords():
+    r = request.get_json()
+    
     try:
         return extract_keywords(r['content'], r['heading'], r['top_n'])
     except KeyError:
         return {'Error': 'Invalid parameter'}
     
+        
 if __name__ == '__main__':
-    uvicorn.run("main:app", host="127.0.0.1", port=10000, reload=True)
+    app.run(host="0.0.0.0", port=10000, debug=True)
