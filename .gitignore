@@ -1,0 +1,10 @@
+Include/
+Lib/
+Scripts/
+.vscode/
+share/
+.env
+
+*.cfg
+
+__pycache__/
