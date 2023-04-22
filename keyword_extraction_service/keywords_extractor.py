@@ -32,7 +32,7 @@ def extract_keywords(content, heading, top_n):
         return []
 
 
-def get_phrase_embedding(phrase: str, content_words: list[str], phrase_embeddings) -> list:
+def get_phrase_embedding(phrase, content_words, phrase_embeddings):
     try:
         index = content_words.index(phrase.split()[0])
     except ValueError:
