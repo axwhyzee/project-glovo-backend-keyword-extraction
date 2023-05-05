@@ -8,3 +8,5 @@ share/
 *.cfg
 
 __pycache__/
+
+test.py

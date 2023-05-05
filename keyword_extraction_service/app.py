@@ -12,10 +12,10 @@ def read_root():
 
 @app.route('/keywords')
 def get_keywords():
-    r = request.get_json()
+    args = request.args
     
     try:
-        return extract_keywords(r['content'], r['heading'], r['top_n'])
+        return extract_keywords(args.get('content'), args.get('heading'), int(args.get('top_n')))
     except KeyError:
         return {'Error': 'Invalid parameter'}
     
