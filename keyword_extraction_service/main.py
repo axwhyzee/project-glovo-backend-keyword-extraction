@@ -1,17 +1,16 @@
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
+from keywords_extractor import extract_keywords
 from flask import Flask, request
 from flask_cors import CORS
-from keywords_extractor import extract_keywords
+import os
 
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 @app.route('/')
-def read_root():
-    return "Index"
-
-@app.route('/keywords')
-def get_keywords():
+def index():
     args = request.args
     
     try:
@@ -21,4 +20,4 @@ def get_keywords():
     
         
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=10000, debug=True)
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
