@@ -5,7 +5,7 @@ import os
 
 
 HF_TOKEN = os.environ.get("HF_TOKEN")
-login(token=HF_TOKEN, add_to_git_credential=True)
+login(token=HF_TOKEN)
 
 model = KeyBERT()
 vectorizer = KeyphraseCountVectorizer()
