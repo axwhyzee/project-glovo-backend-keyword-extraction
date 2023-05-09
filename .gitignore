@@ -4,9 +4,4 @@ Scripts/
 .vscode/
 share/
 .env
-
-*.cfg
-
 __pycache__/
-
-test.py
