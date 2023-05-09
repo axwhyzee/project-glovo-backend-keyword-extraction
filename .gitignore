@@ -3,5 +3,6 @@ Lib/
 Scripts/
 .vscode/
 share/
-.env
 __pycache__/
+.env
+pyvenv.cfg
