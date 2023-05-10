@@ -3,12 +3,20 @@ from keyphrase_vectorizers import KeyphraseCountVectorizer
 from huggingface_hub import login
 import os
 
-
 HF_TOKEN = os.environ.get("HF_TOKEN")
 login(token=HF_TOKEN)
 
+print("[.] Downloading keybert model")
 model = KeyBERT()
+
+if model:
+    print("[+] Downloaded model")
+else:
+    print("[!] Download failed")
+
+print("Instantiating vectorizer")
 vectorizer = KeyphraseCountVectorizer()
+print("Instantiated")
 
 def extract_keywords(content, heading, top_n):
     heading_words = [heading_keyword[0] for heading_keyword in
